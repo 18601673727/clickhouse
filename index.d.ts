@@ -7,8 +7,8 @@ declare module "clickhouse-fork" {
 
   export class ClickHouse {
     constructor(opts: Object);
-    query(query: String, reqParams?: object): QueryCursor;
-    insert(query: String, data?: object): QueryCursor;
+    query<T>(query: String, reqParams?: object): QueryCursor<T>;
+    insert<T>(query: String, data?: object): QueryCursor<T>;
     sessionId: string;
   }
 
@@ -17,10 +17,10 @@ declare module "clickhouse-fork" {
     exec(): Promise<{}>;
   }
 
-  class QueryCursor {
-    toPromise(): Promise<Object[]>;
+  class QueryCursor<T> {
+    toPromise(): Promise<T>;
     exec(callback: callbackExec): void;
     stream(): Stream & WriteStream;
-    withTotals(): QueryCursor;
+    withTotals(): QueryCursor<T>;
   }
 }
