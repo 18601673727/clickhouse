@@ -21,5 +21,6 @@ declare module 'clickhouse' {
     toPromise(): Promise<Object[]>;
     exec(callback: callbackExec): void;
     stream(): Stream & WriteStream;
+    withTotals(): QueryCursor;
   }
 }
